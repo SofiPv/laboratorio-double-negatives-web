@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laboratorio de Double Negatives</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <p class="eyebrow">English Grammar Lab</p>
+    <h1>Laboratorio de Double Negatives</h1>
+    <p>
+      Web app didáctica para practicar la corrección de double negatives
+      en inglés mediante ejercicios interactivos, retroalimentación inmediata
+      y puntaje final.
+    </p>
+  </header>
+
+  <main class="layout">
+    <aside class="card side-panel">
+      <h2>Modo de práctica</h2>
+
+      <div class="mode-grid">
+        <button class="mode-btn active" data-mode="learn" type="button">Explicación</button>
+        <button class="mode-btn" data-mode="select" type="button">Elegir palabra</button>
+        <button class="mode-btn" data-mode="rewrite" type="button">Reescribir</button>
+        <button class="mode-btn" data-mode="quiz" type="button">Quiz final</button>
+      </div>
+
+      <section class="info-box">
+        <h3>Negative words</h3>
+        <div class="word-list">
+          <span>never</span>
+          <span>no</span>
+          <span>nobody</span>
+          <span>none</span>
+          <span>no one</span>
+          <span>nor</span>
+          <span>not</span>
+          <span>nothing</span>
+          <span>nowhere</span>
+          <span>n’t</span>
+        </div>
+      </section>
+
+      <section class="info-box">
+        <h3>Positive replacements</h3>
+        <div class="word-list positive">
+          <span>ever</span>
+          <span>any</span>
+          <span>anybody</span>
+          <span>anyone</span>
+          <span>anything</span>
+          <span>anywhere</span>
+        </div>
+      </section>
+
+      <section class="info-box">
+        <h3>Progreso</h3>
+        <p id="progressText">Sin intentos todavía.</p>
+        <div class="progress">
+          <div id="progressBar"></div>
+        </div>
+        <p id="bestScoreText">Mejor puntaje: 0%</p>
+        <button id="resetProgressBtn" class="secondary" type="button">Reiniciar progreso</button>
+      </section>
+    </aside>
+
+    <section class="card main-panel">
+      <section id="learnView" class="view active-view">
+        <p class="section-label">Tema</p>
+        <h2>What is a double negative?</h2>
+
+        <div class="lesson-card">
+          <p>
+            A double negative happens when a sentence uses two negative words
+            where only one is needed for a negative meaning.
+          </p>
+
+          <div class="example-grid">
+            <div class="example wrong">
+              <h3>Double negative</h3>
+              <p>I don’t need no help.</p>
+            </div>
+
+            <div class="example correct">
+              <h3>Correct option 1</h3>
+              <p>I don’t need any help.</p>
+            </div>
+
+            <div class="example correct">
+              <h3>Correct option 2</h3>
+              <p>I need no help.</p>
+            </div>
+          </div>
+
+          <p>
+            To correct it, remove one negative word or change one negative word
+            into a positive word such as <strong>any</strong>,
+            <strong>anybody</strong>, <strong>anything</strong> or
+            <strong>anywhere</strong>.
+          </p>
+        </div>
+
+        <div class="rule-grid">
+          <article>
+            <h3>Pattern 1</h3>
+            <p><strong>not / n’t</strong> + positive word</p>
+            <p class="mini">I can’t find <strong>anything</strong>.</p>
+          </article>
+
+          <article>
+            <h3>Pattern 2</h3>
+            <p>Affirmative verb + negative word</p>
+            <p class="mini">I can find <strong>nothing</strong>.</p>
+          </article>
+
+          <article>
+            <h3>Pattern 3</h3>
+            <p>Never + positive word</p>
+            <p class="mini">She never tells <strong>anyone</strong>.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="selectView" class="view">
+        <p class="section-label">Practice 1</p>
+        <h2>Choose the correct word</h2>
+        <p class="instruction">
+          Select the word that makes the sentence negative without creating a double negative.
+        </p>
+
+        <div id="selectQuestion" class="question-card"></div>
+        <div id="selectOptions" class="option-grid"></div>
+        <div id="selectFeedback" class="feedback"></div>
+
+        <div class="action-row">
+          <button id="selectNextBtn" type="button">Siguiente</button>
+        </div>
+      </section>
+
+      <section id="rewriteView" class="view">
+        <p class="section-label">Practice 2</p>
+        <h2>Rewrite the sentence</h2>
+        <p class="instruction">
+          Rewrite the sentence in two correct ways: one using a negative verb plus a positive word,
+          and another using an affirmative verb plus one negative word.
+        </p>
+
+        <div id="rewriteQuestion" class="question-card"></div>
+
+        <label class="full-input">
+          Correction 1
+          <input id="rewriteAnswerOne" type="text" placeholder="Write the first correction..." />
+        </label>
+
+        <label class="full-input">
+          Correction 2
+          <input id="rewriteAnswerTwo" type="text" placeholder="Write the second correction..." />
+        </label>
+
+        <div class="action-row">
+          <button id="checkRewriteBtn" type="button">Revisar</button>
+          <button id="rewriteNextBtn" type="button" class="secondary">Siguiente</button>
+        </div>
+
+        <div id="rewriteFeedback" class="feedback"></div>
+      </section>
+
+      <section id="quizView" class="view">
+        <p class="section-label">Final quiz</p>
+        <h2>Quiz de double negatives</h2>
+        <p class="instruction">
+          Responde las preguntas para obtener tu puntaje final.
+        </p>
+
+        <div id="quizArea"></div>
+
+        <div class="action-row">
+          <button id="submitQuizBtn" type="button">Calificar quiz</button>
+          <button id="restartQuizBtn" type="button" class="secondary">Reiniciar quiz</button>
+        </div>
+
+        <div id="quizFeedback" class="feedback"></div>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <p>Proyecto de portafolio desarrollado con HTML, CSS y JavaScript.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
